@@ -16,7 +16,7 @@ define([
 
         mode: 'client',
 
-        url: 'http://gis.phila.gov/arcgis/rest/services/PhilaGov/Construction/MapServer/5/query',
+        url: 'http://api.phila.gov/arcgis/rest/services/PhilaGov/Construction/MapServer/5/query',
 
         parse: function(data) {
           return _.map(data.features, function(feature) {
