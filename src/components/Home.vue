@@ -96,7 +96,7 @@
   import Table from './Table.vue';
   global.$ = global.jQuery = require('jquery');
   require('../assets/js/utils/foundation-datepicker.js');
-  
+
 
   const homeStore = {
     date1: null,
@@ -164,7 +164,7 @@
       if (cache.get('rco')) {
         this.rcoArray = cache.get('rco');
       } else {
-        let promise = queries.query(queries.strings.rco);
+        let promise = queries.query(queries.strings.rcoNames);
         promise.then(
           response => {
           try {
@@ -264,15 +264,20 @@
               this.date1.toISOString(),
               this.date2.toISOString()
             );
+          } else {
+            sql = queries.query(
+              queries.strings.rcoGeom
+            );
           }
 
           if (sql != "") {
             queries.query(sql)
               .then((response) => {
-                let filterDataCollection = objects.getFilterResultsCollection(response.data.rows);
-                cache.set(this.$route.path, filterDataCollection);
-                this.rowsCount = filterDataCollection.length;
-                this.localRows = filterDataCollection;
+                console.log( sql );
+                // let filterDataCollection = objects.getFilterResultsCollection(response.data.rows);
+                // cache.set(this.$route.path, filterDataCollection);
+                // this.rowsCount = filterDataCollection.length;
+                // this.localRows = filterDataCollection;
               })
               .catch(err => {
 
